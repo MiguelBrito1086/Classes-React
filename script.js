@@ -21,12 +21,13 @@ class Factory {
     // this.color = color;
     // this.trim = trim;
     // this.model = model;
-    console.log(`Building ${quantity} ${options.color} etc.`);
+    console.log(`Building ${quantity} ${options.color} ${options.trim} ${options.model}s.`);
   };
-  static customerBuild( color, options ) {
-    this.color = color;
-    this.trim = trim;
-    this.model = model;
+  static customerBuild( color, options, specials ) {
+    // this.color = color;
+    // this.trim = trim;
+    // this.model = model;
+    console.log(`Building one ${color} ${options.trim} ${options.model} with the following options: ${specials}`);
   };
 }
 
@@ -116,27 +117,22 @@ class Truck extends Factory {
 // Write your 'mazda3' instance below:
 let mazda3 = new Car({model:'mazda3', color:'red', enginetype:'hybrid', transmission:'automatic', trim:'touring', wheelstrim:'base', audio:'premium', seatstrim:'leather', moonroof:true })
 
-console.log(mazda3);
 // Print mazda3. I should have all the above properties.
 // Write your code below:
 
-
-
-
+console.log(mazda3);
 
 // Print calling massBuild(), building 35000 cars.
 // It should print: "Building 35000 Red Touring Mazda3's."
 // Write your code below:
 
-
-
-
+Factory.massBuild(35000, { color: "red", trim: "Touring", model:"Mazda3"});
 
 // Print, calling customerBuild(), building one yellow mazda3 with the following options, as an array: weather package, satellite radio, rear spoiler.
 // It should read: "Building one yellow Touring Mazda3 with the following options: weather package, satellite radio, rear spoiler"
 // Write your code below:
-
-
+// `Building one ${options.color} ${options.trim} ${options.model} with the following options: ${options}`
+Factory.customerBuild( "yellow", { trim: "Touring", model:"Mazda3" }, ["weather package, satellite radio, rear spoiler"] )
 
 
 
@@ -147,31 +143,24 @@ console.log(mazda3);
 // Write your 'miataRf' instance below:
 // Write your code below:
 
-
-
-
+let miataRf = new Sport({model:'Miata-RF', trim:'Grand Touring', transmission:'manual', top:'hard top', color:'red', seats:'leather', audio: 'premium', wheels:'premium'})
 
 // Print miataRf. It should have all of the above properties. Plus, the extended warranty.
 // Write your code below:
 
-
-
-
+console.log(miataRf);
 
 // Print miataRf, calling massBuild(), building 15,000
 // It should print: "Building 15000 Red Grand Touring Miata-RF's."
 // Write your code below:
 
-
-
-
+Factory.massBuild(15000, {color: 'Red', trim: 'Grand Touring', model:'Miata-RF'} )
 
 // Print miataRf, calling customerBuild(), building one black Miata-Rf with the following options, as an array: hid headlights, sports suspension, leather steering wheel, heated seats, adaptive cruise control.
 // It should read: "Building one black Grand Touring Miata-RF with the following options: hid headlights, sports suspension, leather steering wheel, heated seats, adaptive cruise control"
 // Write your code below:
 
-
-
+Factory.customerBuild( "black", {model:'Miata-RF'}, ["hid headlights, sports suspension, leather steering wheel, heated seats, adaptive cruise control"])
 
 // TRAIL BLAZER MASS PRODUCTION
 // The Trail Blazer should inherit from truck.
