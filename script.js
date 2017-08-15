@@ -8,7 +8,27 @@
 // All automobiles manufacutered should have the following properties: make (Mazda), location (USA), airbags (true), abs (true), warranty (60,000 miles / 3 years)
 // This factory should also run two functions: massBuild() and customerBuild()
 
-class Factory()
+class Factory {
+  constructor() {
+    this.make = 'Mazda';
+    this.location = 'USA';
+    this.airbags = true;
+    this.abs = true;
+    this.warranty = '60,000 miles / 3 years';
+  };
+  static massBuild( quantity, color, trim, model ) {
+    this.quantity = quantity;
+    this.color = color;
+    this.trim = trim;
+    this.model = model;
+  };
+  static customerBuild( color, trim, model ) {
+    this.color = color;
+    this.trim = trim;
+    this.model = model;
+  };
+}
+
 
 // massBuild should receive the following parameters: quantity, options.
 // It should print "Building QUANTITY COLOR TRIM MODEL's" i.e: "Building 100 blue Touring CX-5's"
@@ -16,9 +36,27 @@ class Factory()
 // customerBuild should receive the following parameters: color, options.
 // It should print "Building one COLOR TRIM MODEL with the following options: OPTIONS", i.e: "Building one red Sport Mazda3 with the following options: heated seats, rear spoiler"
 
-// Create the Factory class bellow:
+Factory.prototype.massBuild = function(quantity, options) {
+  console.log(`Building ${this.quantity} ${this.options}`)
+};
+
+Factory.prototype.customerBuild = function(color, options) {
+  console.log(`Building one ${this.color} ${this.options}`)
+};
 
 
+// Create the Factory class below:
+
+class Car extends Factory {
+  constructor(model, doors, color, enginetype, transmission, trim, wheelstrim, audio, seatstrim, moonroof, warranty) {
+    super(warranty);
+    this.warranty = warranty;
+    this.enginesize = 4;
+    this.navigation = true;
+    this.backupcamera = true;
+    this.warranty = "100,000 miles / 5 years";
+  }
+}
 
 
 // CREATE A SUB-CLASS CALLED CAR
@@ -28,7 +66,15 @@ class Factory()
 // Car should also have the following additional properties: enginesize (4), navigation (true), backupcamera (true), warranty (100,000 miles / 5 years)
 // Write your code below:
 
-
+class Sport extends Car {
+  constructor( model, trim, transmission, top, color, seatstrim, audio, wheelstrim ) {
+    super();
+    this.moonroof = false;
+    this.enginetype = 'gasoline';
+    this.convertible = true;
+    this.doors = 2;
+  }
+}
 
 
 // CREATE A SUB-CLASS CALLED SPORT
@@ -37,7 +83,12 @@ class Factory()
 // Sports cars should also have the following additional properties: moonroof (false), enginetype (gasoline), convertible (true), doors (2)
 // Write your code below:
 
+class Truck extends Factory {
+  constructor( model, color, enginesize, hitch, bed, navigation ) {
+    super();
 
+  }
+}
 
 
 // CREATE A SUB-CLASS CALLED TRUCK
