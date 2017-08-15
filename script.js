@@ -16,41 +16,45 @@ class Factory {
     this.abs = true;
     this.warranty = '60,000 miles / 3 years';
   };
-  static massBuild( quantity, color, trim, model ) {
-    this.quantity = quantity;
-    this.color = color;
-    this.trim = trim;
-    this.model = model;
+  static massBuild( quantity, options ) {
+    // this.quantity = quantity;
+    // this.color = color;
+    // this.trim = trim;
+    // this.model = model;
+    console.log(`Building ${quantity} ${options.color} etc.`);
   };
-  static customerBuild( color, trim, model ) {
+  static customerBuild( color, options ) {
     this.color = color;
     this.trim = trim;
     this.model = model;
   };
 }
 
+// console.log(`Building ${quantity} ${color} ${trim} ${model}'s`);
 
 // massBuild should receive the following parameters: quantity, options.
 // It should print "Building QUANTITY COLOR TRIM MODEL's" i.e: "Building 100 blue Touring CX-5's"
 
+Factory.massBuild(100, { color: "blue", model: 'CX-5', trim: 'Touring'})
+
 // customerBuild should receive the following parameters: color, options.
 // It should print "Building one COLOR TRIM MODEL with the following options: OPTIONS", i.e: "Building one red Sport Mazda3 with the following options: heated seats, rear spoiler"
-
-Factory.prototype.massBuild = function(quantity, options) {
-  console.log(`Building ${this.quantity} ${this.options}`)
-};
-
-Factory.prototype.customerBuild = function(color, options) {
-  console.log(`Building one ${this.color} ${this.options}`)
-};
 
 
 // Create the Factory class below:
 
 class Car extends Factory {
-  constructor(model, doors, color, enginetype, transmission, trim, wheelstrim, audio, seatstrim, moonroof, warranty) {
-    super(warranty);
-    this.warranty = warranty;
+  constructor({ model, doors, color, enginetype, transmission, trim, wheelstrim, audio, seatstrim, moonroof }) {
+    super();
+    this.model = model;
+    this.doors = doors;
+    this.color = color;
+    this.transmission = transmission;
+    this.trim = trim;
+    this.wheelstrim = wheelstrim;
+    this.audio = audio;
+    this.seatstrim = seatstrim;
+    this.moonroof = moonroof;
     this.enginesize = 4;
     this.navigation = true;
     this.backupcamera = true;
@@ -67,12 +71,12 @@ class Car extends Factory {
 // Write your code below:
 
 class Sport extends Car {
-  constructor( model, trim, transmission, top, color, seatstrim, audio, wheelstrim ) {
-    super();
-    this.moonroof = false;
-    this.enginetype = 'gasoline';
+  constructor({ model, trim, transmission, top, color, seatstrim, audio, wheelstrim }) {
+    super({
+      model, doors : 2, color, enginetype: 'gasoline', transmission, trim, wheelstrim, audio, seatstrim, moonroof: false
+    });
+    this.top = top
     this.convertible = true;
-    this.doors = 2;
   }
 }
 
@@ -86,10 +90,11 @@ class Sport extends Car {
 class Truck extends Factory {
   constructor( model, color, enginesize, hitch, bed, navigation ) {
     super();
-
+    this.backupcamera = true;
+    this.audio = 'basic';
+    this.warranty = "150,000 miles / 6 years";
   }
 }
-
 
 // CREATE A SUB-CLASS CALLED TRUCK
 // Yes...this Mazda factory makes trucks....
@@ -109,8 +114,9 @@ class Truck extends Factory {
 // The following properties must be specified: model (mazda3), color (red), enginetype (hybrid), transmission (automatic), trim (touring), wheels (base), audio (premium), seats (leather), and moonroof (true)
 
 // Write your 'mazda3' instance below:
+let mazda3 = new Car({model:'mazda3', color:'red', enginetype:'hybrid', transmission:'automatic', trim:'touring', wheelstrim:'base', audio:'premium', seatstrim:'leather', moonroof:true })
 
-
+console.log(mazda3);
 // Print mazda3. I should have all the above properties.
 // Write your code below:
 
